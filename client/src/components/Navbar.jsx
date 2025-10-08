@@ -1,0 +1,97 @@
+import {Moon, Sun, Menu, X } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+
+const navLinks = [
+  { name: "Home", path: "/" },
+  { name: "Login", path: "/login" },
+  { name: "Signup", path: "/signup" },
+  { name: "Dashboard", path: "/dashboard" },
+];
+
+const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [darkMode, setDarkMode] = useState(true);
+
+  const toggleDarkMode = () => {
+    const newMode = !darkMode;
+    setDarkMode(newMode);
+
+    if (newMode) {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    }
+  }
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme") || "dark";
+    if (savedTheme === "dark") {
+      document.documentElement.classList.add("dark");
+      setDarkMode(true);
+    } else {
+      document.documentElement.classList.remove("dark");
+      setDarkMode(false);
+    }
+  }, [])
+
+  return (
+    <nav className="fixed top-0 left-0 z-50 w-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
+      <div className="max-w-7xl px-6 py-4 mx-auto flex justify-between items-center">
+
+        {/* Logo */}
+        <Link className="text-2xl font-bold text-indigo-600 dark:text-indigo-400">
+          Note Keeper
+        </Link>
+
+        {/* Desktop menu */}
+        <div className="hidden md:flex items-center space-x-8">
+          {navLinks.map((link) => (
+            <Link
+              key={link.path}
+              to={link.path}
+              className="text-gray-700 dark:text-gray-200 hover:text-indigo-500 
+              dark:hover:text-indigo-400 transition">
+              {link.name}
+            </Link>
+          ))}
+          <button
+          onClick={toggleDarkMode}
+          className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-200 cursor-pointer">
+            {darkMode ? <Sun size={18} /> : <Moon size={18} />}
+          </button>
+        </div>
+
+        {/* Mobile menu button */}
+        <button onClick={() => setIsOpen(!isOpen)}
+          className="md:hidden text-gray-700 dark:text-gray-200"
+        >
+          {isOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
+      </div>
+
+      {/* Mobile menu */}
+      {isOpen && (
+        <div className="md:hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 px-6 py-4 space-y-4">
+          {navLinks.map((link) => (
+            <Link
+              key={link.path}
+              to={link.path}
+              className="block text-gray-700 dark:text-gray-200 hover:bg-indigo-500 dark:hover:bg-indigo-400 transition"
+            onClick={() => setIsOpen(false)}>
+              {link.name}
+            </Link>
+          ))}
+          <button onClick={toggleDarkMode}
+          className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200">
+            {darkMode ? <Sun size={18} /> : <Moon size={18} />}
+          </button>
+        </div>
+      )}
+    </nav>
+  );
+};
+
+export default Navbar;
