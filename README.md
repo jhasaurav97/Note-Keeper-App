@@ -42,45 +42,45 @@ Future goal: Make this project **open-source** so developers can contribute and 
 
 ## 📂 Project Structure
 
-NoteKeeperApp/
-│── backend/
-│ ├── config/
-│ │ └── connect.db.js # MongoDB connection
-│ ├── controllers/
-│ │ ├── auth.controller.js # Authentication logic
-│ │ └── notes.controller.js # Notes CRUD logic
-│ ├── middleware/
-│ │ ├── auth.middleware.js # Auth middleware
-│ │ └── validator.middleware.js
-│ ├── models/
-│ │ ├── User.model.js # User schema
-│ │ └── Notes.model.js # Notes schema
-│ ├── routes/
-│ │ ├── auth.routes.js
-│ │ └── notes.routes.js
-│ ├── utils/
-│ │ ├── api-error.js
-│ │ ├── api-response.js
-│ │ ├── async-handler.js
-│ │ └── constant.js
-│ ├── validator/
-│ │ └── index.js # Validation logic
-│ ├── app.js # Express app setup
-│ └── index.js # Server entry point
-│
-│── client/
-│ ├── src/
-│ │ ├── pages/ # Home, Login, Signup, Dashboard
-│ │ ├── components/ # UI components
-│ │ ├── App.jsx # Root app
-│ │ └── main.jsx # React entry
-│ ├── public/
-│ ├── index.html
-│ └── vite.config.js
-│
-│── .env # Environment variables
-│── package.json
-│── README.md
+- NoteKeeperApp/
+-  │── backend/
+-  │ ├── config/
+-  │ │ └── connect.db.js # MongoDB connection
+-  │ ├── controllers/
+-  │ │ ├── auth.controller.js # Authentication logic
+-  │ │ └── notes.controller.js # Notes CRUD logic
+-  │ ├── middleware/
+-  │ │ ├── auth.middleware.js # Auth middleware
+-  │ │ └── validator.middleware.js
+-  │ ├── models/
+-  │ │ ├── User.model.js # User schema
+-  │ │ └── Notes.model.js # Notes schema
+-  │ ├── routes/
+-  │ │ ├── auth.routes.js
+-  │ │ └── notes.routes.js
+-  │ ├── utils/
+-  │ │ ├── api-error.js
+-  │ │ ├── api-response.js
+-  │ │ ├── async-handler.js
+-  │ │ └── constant.js
+-  │ ├── validator/
+-  │ │ └── index.js # Validation logic
+-  │ ├── app.js # Express app setup
+-  │ └── index.js # Server entry point
+- | 
+- │── client/
+- │ ├── src/
+- │ │ ├── pages/ # Home, Login, Signup, Dashboard
+- │ │ ├── components/ # UI components
+- │ │ ├── App.jsx # Root app
+- │ │ └── main.jsx # React entry
+- │ ├── public/
+- │ ├── index.html
+- │ └── vite.config.js
+- │
+- │── .env # Environment variables
+- │── package.json
+- │── README.md
 
 
 ---
