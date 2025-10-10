@@ -1,21 +1,52 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useAuth } from "../context/AuthContext";
 
 const Login = () => {
   const [formData, setFormData] = useState({
-    name: "",
     email: "",
     password: "",
   });
+  const [errorMsg, setErrorMsg] = useState("");
+  const [successMsg, setSuccessMsg] = useState("");
+  const navigate = useNavigate();
+
+  const { login } = useAuth();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    setErrorMsg("");
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setSuccessMsg("");
+    setErrorMsg("");
     console.log("Login Data: ", formData);
     // Later: send post request to backend (MongoDB)
+    try {
+      const res = await axios.post(
+        "http://localhost:8000/api/v1/auth/login",
+        formData,
+        { withCredentials: true }
+      );
+      if (res.data?.success) {
+        setSuccessMsg("Login successful! Redirecting...");
+        console.log("User logged In: ", res.data);
+        // store token in localStorage if you want persistent login
+        localStorage.setItem("accessToken", res.data.data.accessToken);
+        //Update global auth state
+        login(res.data.data.user);
+        setTimeout(() => navigate("/dashboard"), 2000);
+      }
+    } catch (error) {
+      console.error(error.response?.data || error.message);
+      setErrorMsg(
+        error.response?.data?.message ||
+          "Invalid credentials. Please try again."
+      );
+    }
   };
 
   return (
@@ -24,6 +55,18 @@ const Login = () => {
         <h2 className="tex-2xl font-bold text-center text-gray-900 dark:text-white mb-6">
           Create an Account
         </h2>
+
+        {/* Sucess or Error Msg */}
+        {errorMsg && (
+          <p className="text-red-500 text-center mb-2 font-medium">
+            {errorMsg}
+          </p>
+        )}
+        {successMsg && (
+          <p className="text-green-500 text-center mb-2 font-medium">
+            {successMsg}
+          </p>
+        )}
         <form onSubmit={handleSubmit} className="space-y-4">
           <input
             type="email"

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
-    <div className="relative pt-20  bg-white dark:bg-gray-900 ">
+    <div className="relative pt-20 bg-white dark:bg-gray-900 ">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
         {/* Left side */}
         <div className="text-center md:text-left">
