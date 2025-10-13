@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
 import crypto from "crypto";
+import { OAuth2Client } from "google-auth-library";
 import { User } from "../models/User.models.js";
 import { ApiResponse } from "../utils/api-response.js";
 import { ApiError } from "../utils/api-error.js";
@@ -378,6 +379,72 @@ const changeCurrentPassword = asyncHandler(async (req, res) => {
     ))
 });
 
+const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
+
+const googleLogin = asyncHandler(async (req, res) => {
+  const { credential } = req.body;
+  
+  if (!credential) {
+    throw new ApiError(400, "Google credential is required");
+  }
+
+  const ticket = await client.verifyIdToken({
+    idToken: credential,
+    audience: process.env.GOOGLE_CLIENT_ID
+  });
+
+  const payload = ticket.getPayload();
+  if (!payload) {
+    throw new ApiError(400, "Invalid Google token payload");
+  }
+
+  const { email, username, avatar, sub: googleId } = payload;
+  
+  let user = await User.findOne({ email });
+  if (!user) {
+    user = await User.create({
+      email,
+      username,
+      password: null,
+      isEmailVerified: true,
+      googleId,
+      avatar: {
+        url: payload.picture || `https://placehold.co/200x200`,
+        localpath: ""
+      }
+    });
+  }
+
+  const { accessToken, refreshToken } = await generateAccessAndRefreshTokens(user._id);
+
+  const loggedInUser = await User.findById(user._id).select(
+    "-password -refreshToken -emailVerificationToken -emailVerificationExpiry"
+  );
+
+  const options = {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "Strict"
+  };
+
+  return res
+    .status(200)
+    .cookie("accessToken", accessToken, options)
+    .cookie("refreshToken", refreshToken, options)
+    .json(
+    new ApiResponse(
+      200,
+      {
+        user: loggedInUser,
+        accessToken,
+        refreshToken
+      },
+      "Google login successful"
+    )
+  )
+
+})
+
 export {
   registerUser,
   login,
@@ -388,5 +455,6 @@ export {
   refreshAccessToken,
   // forgotPasswordRequest,
   resetForgotPassword,
-  changeCurrentPassword
+  changeCurrentPassword,
+  googleLogin
 };

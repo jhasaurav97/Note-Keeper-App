@@ -5,6 +5,7 @@ import Signup from "./pages/Signup.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
 import Navbar from "./components/Navbar.jsx";
 import PrivateRoute from "./components/PrivateRoute.jsx";
+import OAuthCallbackGithub from "./pages/OAuthCallbackGithub.jsx";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/oauth/github" element={<OAuthCallbackGithub />} />
             <Route path="/signup" element={<Signup />} />
             <Route
               path="/dashboard"

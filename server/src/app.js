@@ -16,13 +16,17 @@ app.use(cors({
     allowedHeaders: ["Content-Type", "Authorization"]
 }));
 
-
 // Import Routes
 import authRouter from "./routes/auth.routes.js";
-import notesRoutes from "./routes/note.routes.js";
+import noteRoutes from "./routes/note.routes.js";
+
 
 app.use("/api/v1/auth", authRouter);
-app.use("/api/v1/notes", notesRoutes);
+app.use("/api/v1/notes", noteRoutes);
+
+import oauthRoutes from "./routes/oauth.routes.js";
+
+app.use("/api/v1/auth", oauthRoutes);
 
 
 app.use((err, req, res, next) => {
@@ -32,7 +36,7 @@ app.use((err, req, res, next) => {
         message: err.message || "Internal Server Error",
         errors: err.errors || [],
     })
-})
+});
 
 app.get("/", (req, res) => {
     res.send("<h1>Note Keeper App</h1>")

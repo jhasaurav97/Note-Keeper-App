@@ -43,6 +43,14 @@ const Navbar = () => {
     }
   }, []);
 
+  // Generate a random avatar URL using DiceBear (unique per user email or username)
+  const getAvatarUrl = () => {
+    if (!user) return "";
+    const seed =
+      user.email || user.username || Math.random().toString(36).substring(2, 8);
+    return `https://avatars.dicebear.com/api/identicon/${seed}.svg`;
+  };
+
   return (
     <nav className="fixed top-0 left-0 z-50 w-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
       <div className="max-w-7xl px-6 py-4 mx-auto flex justify-between items-center">
@@ -68,13 +76,13 @@ const Navbar = () => {
           {user && (
             <div className="flex items-center gap-3">
               <img
-                src="/default-avatar.png"
+                src={getAvatarUrl()}
                 alt="User"
                 className="w-8 h-8 rounded-full border border-gray-300 dark:border-gray-600"
               />
               <button
                 onClick={logout}
-                className="px-4 py-2 rounded-lg border border-indigo-500 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-gray-800 transition duration-300"
+                className="px-4 py-2 rounded-lg border border-indigo-500 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-gray-800 transition duration-300 cursor-pointer"
               >
                 Logout
               </button>

@@ -6,9 +6,16 @@ const router = Router();
 
 router.use(verifyJWT);
 
+// Create Note
 router.post("/", createNote);
+
+// Get All Notes
 router.get("/", getUserNotes);
-router.put("/", updateNote);
-router.delete("/", deleteNote);
+
+// Update Note
+router.put("/:id", updateNote);
+
+// Delete Note
+router.delete("/:id", deleteNote);
 
 export default router;

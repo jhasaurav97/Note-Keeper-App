@@ -1,10 +1,13 @@
 import heroBg from "../assets/hero-bg.svg";
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 const Hero = () => {
+  const { user } = useAuth();
+
   return (
     <div className="relative pt-20 bg-white dark:bg-gray-900 ">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      <div className="max-w-7xl mx-auto px-6 pb-4 md:pb-0 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
         {/* Left side */}
         <div className="text-center md:text-left">
           <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white leading-tight">
@@ -18,7 +21,7 @@ const Hero = () => {
           </p>
           <div className="mt-8">
             <button className="px-8 py-3 rounded-xl bg-indigo-600 text-white font-medium text-lg shadow-lg hover:bg-indigo-700 transition cursor-pointer">
-              <Link to="/signup">Get Started – It’s Free</Link>
+              <Link to={user ? "/dashboard" : "/login"}>Get Started – It’s Free</Link>
             </button>
           </div>
         </div>
