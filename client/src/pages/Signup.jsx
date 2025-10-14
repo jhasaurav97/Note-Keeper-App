@@ -25,7 +25,7 @@ const Signup = () => {
     // Later: send post request to backend (MongoDB)
     try {
       const res = await axios.post(
-        "http://localhost:8000/api/v1/auth/register",
+        `${import.meta.env.VITE_API_URL}/auth.register`,
         formData,
         { withCredentials: true }
       );

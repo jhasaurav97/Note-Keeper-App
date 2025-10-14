@@ -62,8 +62,9 @@ const Login = () => {
     console.log("Login Data: ", formData);
     // Later: send post request to backend (MongoDB)
     try {
+      // http://localhost:8000/api/v1/auth/login
       const res = await axios.post(
-        "http://localhost:8000/api/v1/auth/login",
+        `${import.meta.env.VITE_API_URL}/auth/login`,
         formData,
         { withCredentials: true }
       );
