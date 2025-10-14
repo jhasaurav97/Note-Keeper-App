@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useAuth } from "../context/AuthContext";
+import { GoogleLogin } from "@react-oauth/google";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -13,6 +15,44 @@ const Signup = () => {
   const [successMsg, setSuccessMsg] = useState("");
   const navigate = useNavigate();
 
+  const { login } = useAuth();
+
+  const onGoogleSuccess = async (credentialResponse) => {
+    try {
+      console.log(
+        "Google Credentials Received: ",
+        credentialResponse.credential
+      );
+      const res = await axios.post(
+        `${import.meta.env.VITE_API_URL}/auth/google-login`,
+        { credential: credentialResponse.credential },
+        { withCredentials: true }
+      );
+
+      login(res.data.data.user);
+      console.log("Google Login Success: ", res.data);
+
+      localStorage.setItem("user", JSON.stringify(res.data.data.user));
+
+      // ✅ Store user + app token
+      const { accessToken } = res.data.data;
+      localStorage.setItem("token", accessToken);
+      alert(`welcome ${res.data.data.user.username}`);
+      navigate("/dashboard");
+    } catch (error) {
+      console.error("Google Login Error: ", error.response?.data || error);
+      setErrorMsg(
+        error.response?.data?.message ||
+          "Invalid credentials. Please try again."
+      );
+    }
+  };
+
+  const onGoogleError = () => {
+    console.error("❌ Google Login Failed");
+  };
+
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -22,7 +62,6 @@ const Signup = () => {
     setErrors([]);
     setSuccessMsg("");
     console.log("Signup Data: ", formData);
-    // Later: send post request to backend (MongoDB)
     try {
       const res = await axios.post(
         `${import.meta.env.VITE_API_URL}/auth.register`,
@@ -56,6 +95,7 @@ const Signup = () => {
         <h2 className="tex-2xl font-bold text-center text-gray-900 dark:text-white mb-6">
           Create an Account
         </h2>
+
         {/* Success msg */}
         {successMsg && (
           <div className="mb-4 p-2 text-green-800 bg-green-200 rounded">
@@ -63,7 +103,7 @@ const Signup = () => {
           </div>
         )}
 
-        {/* Errors Msg */}
+        {/* Sucess or Error Msg */}
         {errors.length > 0 &&
           errors.map((err, index) => (
             <div
@@ -73,6 +113,8 @@ const Signup = () => {
               {err.message}
             </div>
           ))}
+
+        {/* Email/Password Form */}
         <form onSubmit={handleSubmit} className="space-y-4">
           <input
             type="text"
@@ -113,6 +155,21 @@ const Signup = () => {
             Sign Up
           </button>
         </form>
+
+        {/* Or Divider */}
+        <div className="flex items-center my-6">
+          <hr className="flex-grow border-gray-400" />
+          <span className="mx-2 text-gray-500 dark:text-gray-400">or</span>
+          <hr className="flex-grow border-gray-400" />
+        </div>
+
+        {/* Google login button */}
+        <div className="flex justify-center mb-3">
+          <GoogleLogin onSuccess={onGoogleSuccess} onError={onGoogleError} />
+        </div>
+
+
+        {/* Login Link */}
         <p className="text-center text-gray-500 dark:text-gray-400 mt-4">
           Already have an account?
           <Link to="/login" className="text-indigo-500 hover:underline">

@@ -3,6 +3,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import crypto from "crypto";
 
+
 const userSchema = new Schema(
     {
         avatar: {
@@ -36,7 +37,19 @@ const userSchema = new Schema(
         },
         password: {
             type: String,
-            required: [true, "Password is required"]
+            required: [
+                function () {
+                    return !this.isOAuthUser
+                },
+                "Password is required"
+            ]
+        },
+        isOAuthUser: {
+            type: String,
+            default: false
+        },
+        provider: {
+            type: String    // "google", "github", etc.
         },
         isEmailVerified: {
             type: Boolean,

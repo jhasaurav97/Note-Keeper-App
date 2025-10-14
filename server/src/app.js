@@ -20,13 +20,9 @@ app.use(cors({
 import authRouter from "./routes/auth.routes.js";
 import noteRoutes from "./routes/note.routes.js";
 
-
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/notes", noteRoutes);
 
-import oauthRoutes from "./routes/oauth.routes.js";
-
-app.use("/api/v1/auth", oauthRoutes);
 
 
 app.use((err, req, res, next) => {

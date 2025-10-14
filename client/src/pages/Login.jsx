@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useState} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "../context/AuthContext";
 import { GoogleLogin } from "@react-oauth/google";
-// import { jwtDecode } from "jwt-decode";
+
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -21,7 +21,7 @@ const Login = () => {
       console.log("Google Credentials Received: ", credentialResponse.credential);
       const res = await axios.post(`${import.meta.env.VITE_API_URL}/auth/google-login`,
         { credential: credentialResponse.credential },
-        {withCredentials: true}
+        { withCredentials: true }
       );
 
       login(res.data.data.user);
@@ -29,26 +29,24 @@ const Login = () => {
       
       localStorage.setItem("user", JSON.stringify(res.data.data.user));
       
-      // ✅ Store user + app token
+      // Store user + app token
       const { accessToken } = res.data.data;
       localStorage.setItem("token", accessToken);
       alert(`welcome ${res.data.data.user.username}`);
       navigate("/dashboard");
     } catch (error) {
       console.error("Google Login Error: ", error.response?.data || error);
+      setErrorMsg(
+        error.response?.data?.message ||
+        "Invalid credentials. Please try again."
+      );
     }
-  }
+  };
 
   const onGoogleError = () => {
     console.error("❌ Google Login Failed");
   };
 
-  const startGithubLogin = () => {
-    const clientId = import.meta.env.VITE_GITHUB_CLIENT_ID;
-    const redirectUri = `${window.location.origin}/oauth/github`;
-    const url = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=user:email`;
-    window.location.href = url;
-  }
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -60,9 +58,7 @@ const Login = () => {
     setSuccessMsg("");
     setErrorMsg("");
     console.log("Login Data: ", formData);
-    // Later: send post request to backend (MongoDB)
     try {
-      // http://localhost:8000/api/v1/auth/login
       const res = await axios.post(
         `${import.meta.env.VITE_API_URL}/auth/login`,
         formData,
@@ -71,8 +67,10 @@ const Login = () => {
       if (res.data?.success) {
         setSuccessMsg("Login successful! Redirecting...");
         console.log("User logged In: ", res.data);
+
         // store token in localStorage if you want persistent login
         localStorage.setItem("accessToken", res.data.data.accessToken);
+
         //Update global auth state
         login(res.data.data.user);
         setTimeout(() => navigate("/dashboard"), 2000);
@@ -139,17 +137,9 @@ const Login = () => {
         </div>
 
         {/* Google login button */}
-        <div className="flex justify-center mb-3">
+        <div className="flex justify-center mb-3 ">
           <GoogleLogin onSuccess={onGoogleSuccess} onError={onGoogleError} />
         </div>
-
-        {/* Github login button */}
-        <button
-          onClick={startGithubLogin}
-          className="w-full bg-gray-800 dark:bg-gray-900 text-white font-semibold py-2 rounded-lg"
-        >
-          Continue with Github
-        </button>
 
         {/* Sign-up Link */}
         <p className="text-center text-gray-500 dark:text-gray-400 mt-4">

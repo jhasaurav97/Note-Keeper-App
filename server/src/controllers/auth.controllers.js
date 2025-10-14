@@ -404,8 +404,9 @@ const googleLogin = asyncHandler(async (req, res) => {
   if (!user) {
     user = await User.create({
       email,
-      username,
-      password: null,
+      username: email.split("@")[0],
+      isOAuthUser: true,
+      provider: "google",
       isEmailVerified: true,
       googleId,
       avatar: {
@@ -432,18 +433,19 @@ const googleLogin = asyncHandler(async (req, res) => {
     .cookie("accessToken", accessToken, options)
     .cookie("refreshToken", refreshToken, options)
     .json(
-    new ApiResponse(
-      200,
-      {
-        user: loggedInUser,
-        accessToken,
-        refreshToken
-      },
-      "Google login successful"
+      new ApiResponse(
+        200,
+        {
+          user: loggedInUser,
+          accessToken,
+          refreshToken
+        },
+        "Google login successful"
+      )
     )
-  )
 
-})
+});
+
 
 export {
   registerUser,
@@ -456,5 +458,5 @@ export {
   // forgotPasswordRequest,
   resetForgotPassword,
   changeCurrentPassword,
-  googleLogin
+  googleLogin,
 };
