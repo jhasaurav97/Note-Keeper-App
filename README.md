@@ -62,109 +62,118 @@ NoteKeeper/
 │   └── .env
 │
 └── README.md
+```
 
+##   Features
 
-🔐 Features
-✅ User Authentication
+###  User Authentication
 
-Google OAuth login
+- Google OAuth login
 
-Manual email/password login with bcrypt password hashing
+- Manual email/password login with bcrypt password hashing
 
-Access + Refresh token mechanism using JWT
+- Access + Refresh token mechanism using JWT
 
-Middleware-based route protection
+- Middleware-based route protection
 
-✅ Notes Management
+### Notes Management
 
-Create, update, delete, and view notes
+- Create, update, delete, and view notes
 
-Private notes for each logged-in user
+- Private notes for each logged-in user
 
-MongoDB models with validation
+- MongoDB models with validation
 
-✅ Scalable Architecture
+### Scalable Architecture
 
-MVC structure (Model–View–Controller)
+- MVC structure (Model–View–Controller)
 
-Async error handling via custom asyncHandler
+- Async error handling via custom asyncHandler
 
-Centralized API error/response utilities
+- Centralized API error/response utilities
 
-✅ Deployment & CORS
+### Deployment & CORS
 
-Frontend deployed on Vercel
+- Frontend deployed on Vercel
 
-Backend deployed on Render
+- Backend deployed on Render
 
-Proper CORS policy and environment configuration for cross-domain access
+- Proper CORS policy and environment configuration for cross-domain access
 
-✅ Responsive & Clean UI
+### Responsive & Clean UI
 
-Tailwind CSS for a premium look
+- Tailwind CSS for a premium look
 
-Lucide icons for elegant visuals
+- Lucide icons for elegant visuals
 
-SPA navigation with React Router DOM
+- SPA navigation with React Router DOM
 
-🧠 My Learning Journey
-Challenge	How I Solved It	What I Learned
-CORS issue during deployment	Added environment-based CORS config	Deep understanding of frontend-backend connection
-JWT token mismatch	Used secure cookies and refresh tokens	How real-world authentication works
-Google OAuth integration	Learned OAuth flow & redirect handling	Implementing secure social login
-Folder structure & scalability	Followed industry-standard architecture	Clean code and modular design
-Deployment issues	Deployed frontend (Vercel) & backend (Render) separately	Real DevOps handling experience
-📸 Screenshots
-Login Page	Dashboard	Add Notes
+### My Learning Journey
+- Challenge	How I Solved It	What I Learned
+- CORS issue during deployment	Added environment-based CORS config	Deep understanding of frontend-backend connection
+- JWT token mismatch	Used secure cookies and refresh tokens	How real-world authentication works
+- Google OAuth integration	Learned OAuth flow & redirect handling	Implementing secure social login
+- Folder structure & scalability	Followed industry-standard architecture	Clean code and modular design
+- Deployment issues	Deployed frontend (Vercel) & backend (Render) separately	Real DevOps handling experience
+  
+### Screenshots
+**Home Page**	           **Login Page**	           **Dashboard**
 (Add screenshot here)	(Add screenshot here)	(Add screenshot here)
-🧰 Installation Guide
+
+### Installation Guide
+```bash
 🔹 Clone Repository
 git clone https://github.com/jhasaurav97/note-keeper-app.git
+```
 
-🔹 Backend Setup
+### Backend Setup
+```bash
 cd server
 npm install
 npm run dev
+```
 
-
-Add your environment variables:
-
+**Add your environment variables:**
+```bash
 MONGO_URI=your_mongodb_connection
 JWT_SECRET=your_jwt_secret
 GOOGLE_CLIENT_ID=your_google_client_id
 FRONTEND_URL=https://note-keeper.vercel.app
+```
 
-🔹 Frontend Setup
+### Frontend Setup
+```bash
 cd client
 npm install
 npm run dev
+```
 
-🌍 Live Demo
+### Live Demo
 
-🔗 Frontend: https://note-keeper.vercel.app
+- 🔗 Frontend: https://note-keeper.vercel.app
 
-🔗 Backend (Render): https://note-keeper-api.onrender.com
+- 🔗 Backend (Render): https://note-keeper-api.onrender.com
 
-💡 Future Improvements
+### Future Improvements
 
-Add GitHub OAuth login
+- Add GitHub OAuth login
 
-Add dark/light theme toggle
+- Add dark/light theme toggle
 
-Add note search and categories
+- Add note search and categories
 
-Implement collaborative notes using Socket.io
+- Implement collaborative notes using Socket.io
 
-🧑‍💻 About Developer
+### About Developer
 
-👋 Saurav Jha
-Full Stack Developer | MERN | React | Node.js | Tailwind | MongoDB
-Building real-world apps with clean architecture & passion for scalable design.
+- **Saurav Jha**
+- Full Stack Developer | MERN | React | Node.js | Tailwind | MongoDB
+- Building real-world apps with clean architecture & passion for scalable design.
 
-🔗 LinkedIn: [Your LinkedIn Profile Here]
-🔗 GitHub: https://github.com/jhasaurav97
+- 🔗 LinkedIn: [Your LinkedIn Profile Here]
+- 🔗 GitHub: https://github.com/jhasaurav97
 
-⭐ If you like this project, consider giving it a star on GitHub — it motivates me to build more!
+> ⭐ If you like this project, consider giving it a star on GitHub — it motivates me to build more!
 
 
 ---
