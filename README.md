@@ -178,5 +178,4 @@ npm run dev
 
 ---
 
-Would you like me to **add beautiful badges** (like “Made with ❤️ in MERN”, “Deployed on Vercel”, “License”, “Stars”, etc.) at the top for an even more **professional GitHub look**?  
-It’ll make your README look like top open-source project READMEs.
+> Would you like me to **add beautiful badges** (like “Made with ❤️ in MERN”, “Deployed on Vercel”, “License”, “Stars”, etc.) at the top for an even more **professional GitHub look**?  
