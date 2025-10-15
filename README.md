@@ -177,7 +177,7 @@ npm run dev
 - Full Stack Developer | MERN | React | Node.js | Tailwind | MongoDB
 - Building real-world apps with clean architecture & passion for scalable design.
 
-- 🔗 LinkedIn: [Your LinkedIn Profile Here]
+- 🔗 LinkedIn: https://www.linkedin.com/in/jha-saurav97/
 - 🔗 GitHub: https://github.com/jhasaurav97
 
 > ⭐ If you like this project, consider giving it a star on GitHub — it motivates me to build more!
