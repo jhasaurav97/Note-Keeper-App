@@ -116,9 +116,13 @@ NoteKeeper/
 - Folder structure & scalability	Followed industry-standard architecture	Clean code and modular design
 - Deployment issues	Deployed frontend (Vercel) & backend (Render) separately	Real DevOps handling experience
   
-### Screenshots
-**Home Page**	           **Login Page**	           **Dashboard**
-(Add screenshot here)	(Add screenshot here)	(Add screenshot here)
+## 🖥️ Screenshots
+
+### 🏠 Login Page
+![Login Page](https://github.com/jhasaurav97/note-keeper-app/assets/12345678/abcdef12-3456-7890)
+
+### 📋 Dashboard
+![Dashboard](https://private-user-images.githubusercontent.com/130860836/501333549-7ba511dd-9340-4f70-a8f8-95cbafac334f.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NjA1MTI3MDMsIm5iZiI6MTc2MDUxMjQwMywicGF0aCI6Ii8xMzA4NjA4MzYvNTAxMzMzNTQ5LTdiYTUxMWRkLTkzNDAtNGY3MC1hOGY4LTk1Y2JhZmFjMzM0Zi5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUxMDE1JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MTAxNVQwNzEzMjNaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1mYTk4YTdiMGMxZDBkMmE4N2M3ZGQ2MGRjNjVhMDA0ZmQyZjRhOGJhNTk1OWRkYTdlZDkxMzQ5ZGVlN2U5NWI2JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.Txs8LILMdwwqfz7iOVD-Lp_ebAjwqImeMD_t48BiPUE)
 
 ### Installation Guide
 ```bash
