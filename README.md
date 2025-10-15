@@ -175,7 +175,5 @@ npm run dev
 
 > ⭐ If you like this project, consider giving it a star on GitHub — it motivates me to build more!
 
-
 ---
 
-> Would you like me to **add beautiful badges** (like “Made with ❤️ in MERN”, “Deployed on Vercel”, “License”, “Stars”, etc.) at the top for an even more **professional GitHub look**?  
