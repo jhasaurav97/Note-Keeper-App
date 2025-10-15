@@ -62,7 +62,7 @@ NoteKeeper/
 │   └── .env
 │
 └── README.md
-```
+
 
 🔐 Features
 ✅ User Authentication
