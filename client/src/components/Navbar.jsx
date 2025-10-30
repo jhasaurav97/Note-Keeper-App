@@ -32,6 +32,7 @@ const Navbar = () => {
     }
   };
 
+  
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme") || "dark";
     if (savedTheme === "dark") {
