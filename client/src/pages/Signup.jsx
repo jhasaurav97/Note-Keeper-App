@@ -121,6 +121,7 @@ const Signup = () => {
             placeholder="Full Name"
             value={formData.fullName}
             onChange={handleChange}
+            required
             className="w-full px-4 py-2 rounded-lg border dark:bg-gray-700 dark:border-gray-600 dark:text-white"
           />
           <input
@@ -129,6 +130,7 @@ const Signup = () => {
             placeholder="Username"
             value={formData.username.toLowerCase()}
             onChange={handleChange}
+            required
             className="w-full px-4 py-2 rounded-lg border dark:bg-gray-700 dark:border-gray-600 dark:text-white"
           />
           <input
@@ -137,6 +139,7 @@ const Signup = () => {
             placeholder="Email Address"
             value={formData.email.toLowerCase()}
             onChange={handleChange}
+            required
             className="w-full px-4 py-2 rounded-lg border dark:bg-gray-700 dark:border-gray-600 dark:text-white"
           />
           <input
@@ -145,6 +148,7 @@ const Signup = () => {
             placeholder="Password"
             value={formData.password}
             onChange={handleChange}
+            required
             className="w-full px-4 py-2 rounded-lg border dark:bg-gray-700 dark:border-gray-600 dark:text-white"
           />
           <button

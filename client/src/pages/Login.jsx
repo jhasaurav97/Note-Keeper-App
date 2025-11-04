@@ -111,6 +111,7 @@ const Login = () => {
             placeholder="Email Address"
             value={formData.email}
             onChange={handleChange}
+            required
             className="w-full px-4 py-2 rounded-lg border dark:bg-gray-700 dark:border-gray-600 dark:text-white"
           />
           <input
@@ -119,6 +120,7 @@ const Login = () => {
             placeholder="Password"
             value={formData.password}
             onChange={handleChange}
+            required
             className="w-full px-4 py-2 rounded-lg border dark:bg-gray-700 dark:border-gray-600 dark:text-white"
           />
           <button
