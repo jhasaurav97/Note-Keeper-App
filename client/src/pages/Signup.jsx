@@ -77,6 +77,10 @@ const Signup = () => {
         password: "",
       });
       console.log(res.data);
+      // ✅ Redirect user to login page after 1.5 seconds (optional delay)
+      setTimeout(() => {
+        navigate("/login");
+      }, 1500);
     } catch (error) {
       if (error.response?.data?.errors) {
         setErrors(error.data.response.errors);
