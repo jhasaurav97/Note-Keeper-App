@@ -3,8 +3,8 @@
 Note Keeper is a **full-stack MERN application** that allows users to securely create, read, update, and delete personal notes.  
 This project focuses on **authentication, authorization, and clean CRUD operations**, serving as a strong foundation for full-stack development.
 
-🔗 **Live App:** https://note-keeper-app-phi.vercel.app/
-🔗 **Backend API:** https://note-keeper-app-pa27.onrender.com
+- 🔗 **Live App:** https://note-keeper-app-phi.vercel.app/
+- 🔗 **Backend API:** https://note-keeper-app-pa27.onrender.com
 
 ---
 
