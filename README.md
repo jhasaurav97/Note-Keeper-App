@@ -68,6 +68,7 @@ npm run dev
 - API integration between frontend and backend
 - Handling protected routes
 - Structuring a MERN stack application properly
+- Handling real deployment issues like inactive database clusters and backend service restarts
 
 ---
 
